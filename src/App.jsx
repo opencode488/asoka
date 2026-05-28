@@ -8,13 +8,20 @@ import {
   MessageCircle,
   PackageCheck,
   ParkingCircle,
+  PhoneCall,
   Recycle,
   ShieldCheck,
   ShoppingBag,
   Sparkles,
+  Star,
   Wifi,
 } from 'lucide-react'
+import galleryOne from './assets/asoka-gallery-1.png'
+import galleryTwo from './assets/asoka-gallery-2.png'
+import galleryThree from './assets/asoka-gallery-7.jpg'
+import galleryFour from './assets/asoka-gallery-10.jpg'
 import asokaLogo from './assets/asoka-logo.png'
+import asokaStore from './assets/asoka-store.jpg'
 import './App.css'
 
 const highlights = [
@@ -44,6 +51,13 @@ const facilities = [
   { label: 'Free WiFi', icon: Wifi },
 ]
 
+const galleryItems = [
+  { src: galleryOne, alt: 'Pilihan produk oleh-oleh Asoka', label: 'Snack lokal' },
+  { src: galleryTwo, alt: 'Rak produk kemasan di Asoka', label: 'Produk kemasan' },
+  { src: galleryThree, alt: 'Suasana toko Asoka', label: 'Toko nyaman' },
+  { src: galleryFour, alt: 'Koleksi oleh-oleh khas Karanganyar', label: 'Buah tangan' },
+]
+
 function App() {
   useEffect(() => {
     const revealItems = document.querySelectorAll('.scroll-reveal')
@@ -69,7 +83,9 @@ function App() {
     <main>
       <header className="site-header" aria-label="Navigasi utama">
         <a className="brand" href="#home" aria-label="Asoka beranda">
-          <span className="brand-mark">A</span>
+          <span className="brand-mark">
+            <img src={asokaLogo} alt="" />
+          </span>
           <span className="brand-text">
             <strong>Asoka</strong>
             <small>Oleh-Oleh</small>
@@ -77,6 +93,7 @@ function App() {
         </a>
         <nav>
           <a href="#produk">Oleh-Oleh</a>
+          <a href="#galeri">Galeri</a>
           <a href="#lokasi">Lokasi</a>
           <a href="http://instagram.com/asoka.oleholeh" target="_blank">
             <Camera size={18} aria-hidden="true" />
@@ -88,15 +105,11 @@ function App() {
       <section className="hero" id="home">
         <div className="hero-inner">
           <p className="eyebrow">Pusat oleh-oleh khas Karanganyar</p>
-          <h1>
-            Pulang bawa
-            <span> rasa</span>
-            Karanganyar.
-          </h1>
+          <h1>Asoka Oleh-Oleh Karanganyar</h1>
           <p className="hero-text">
-            Asoka adalah tempat singgah untuk mencari oleh-oleh lokal:
-            camilan khas, minuman tradisional, dan produk kemasan yang siap
-            dibawa untuk keluarga, teman, atau rekan kerja.
+            Tempat singgah untuk menemukan camilan khas, minuman tradisional,
+            dan produk lokal pilihan yang rapi dibawa pulang untuk keluarga,
+            teman, atau rekan kerja.
           </p>
           <div className="hero-actions" aria-label="Aksi cepat">
             <a className="primary-action" href="https://wa.me/6281232206426" target="_blank">
@@ -114,13 +127,21 @@ function App() {
           </div>
         </div>
 
-        <div className="hero-brand-stage" aria-hidden="true">
+        <div className="hero-brand-stage">
           <figure className="hero-media">
-            <img className="hero-brand-logo" src={asokaLogo} alt="" />
+            <img src={asokaStore} alt="Tampilan toko Asoka Oleh-Oleh Karanganyar" />
+            <figcaption>
+              <Star size={16} aria-hidden="true" />
+              Oleh-oleh lokal, siap dibawa pulang
+            </figcaption>
           </figure>
-          <span className="floating-word word-one">camilan</span>
-          <span className="floating-word word-two">lokal</span>
-          <span className="floating-word word-three">buah tangan</span>
+          <div className="hero-card" aria-label="Keunggulan toko">
+            <img src={asokaLogo} alt="" />
+            <div>
+              <strong>Pilihan lengkap</strong>
+              <span>Camilan, kopi, teh, wedangan, dan kue lokal.</span>
+            </div>
+          </div>
         </div>
 
         <div className="hero-stats" aria-label="Ringkasan Asoka">
@@ -188,6 +209,28 @@ function App() {
         </div>
       </section>
 
+      <section className="gallery-section" id="galeri">
+        <div className="section-heading section-heading-wide scroll-reveal">
+          <div>
+            <p className="eyebrow">Galeri Asoka</p>
+            <h2>Lihat pilihan produk sebelum datang ke toko.</h2>
+          </div>
+          <p>
+            Tampilan toko dibuat bersih dan mudah dijelajahi, sehingga belanja
+            oleh-oleh bisa cepat tanpa kehilangan rasa lokalnya.
+          </p>
+        </div>
+
+        <div className="gallery-grid">
+          {galleryItems.map((item) => (
+            <figure className="gallery-card scroll-reveal" key={item.label}>
+              <img src={item.src} alt={item.alt} />
+              <figcaption>{item.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
       <section className="split-section" id="lokasi">
         <div className="visit-copy scroll-reveal">
           <p className="eyebrow">Datang langsung</p>
@@ -208,6 +251,10 @@ function App() {
         </div>
 
         <div className="visit-panel scroll-reveal">
+          <div className="panel-topline">
+            <span>Informasi Toko</span>
+            <PhoneCall size={18} aria-hidden="true" />
+          </div>
           <div className="info-row">
             <Clock size={20} aria-hidden="true" />
             <div>
